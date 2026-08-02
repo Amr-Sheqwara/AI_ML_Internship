@@ -17,19 +17,12 @@ Welcome to Week 3 of the BinX Tech AI & ML Internship. This week marks our trans
 ## <span style="color:#F78BA0">Week Overview</span>
 
 | Attribute | Details |
-
 | :--- | :--- |
-
 | **Curriculum Phase** | Phase 2: Core ML Training (140 hrs) |
-
 | **Week Focus** | Scikit-Learn Basics, Supervised Learning, Data Splitting (`train_test_split`), Preprocessing, Regression, and Classification Models |
-
 | **Primary Dataset** | Palmer Penguins Dataset (`penguins_size.csv`) |
-
 | **Deliverables** | Daily Jupyter Notebooks (`Task.ipynb`) & Daily Documentation (`README.md`) |
-
 | **Tech Stack** | Python 3.10+, NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn |
-
 ---
 
 ## <span style="color:#85C1E9">Weekly Learning Objectives</span>
