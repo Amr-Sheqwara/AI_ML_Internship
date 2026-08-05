@@ -81,5 +81,3 @@ X, y, test_size=0.2, random_state=42
 ## <span style="color:#5DADE2">1.4 Repository Contents</span>
 
 - 📓 `Task.ipynb`: Jupyter Notebook implementing data loading, feature/target separation, and `train_test_split` on `penguins_size.csv`.
-
-- 📝 `README.md`: Localized documentation detailing learning goals, workflow steps, and dataset specifications.

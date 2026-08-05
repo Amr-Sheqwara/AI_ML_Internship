@@ -93,5 +93,3 @@ In <b>Customer Churn Prevention</b>, **Recall is prioritized over Precision**:
 ## <span style="color:#309c42ff">3.5 Repository Contents</span>
 
 - 📓 Task.ipynb: Fully executed Jupyter Notebook with structured Markdown sections, Confusion Matrix heatmap, ROC Curve visualization, and metric interpretations.
-
-- 📝 README.md: Comprehensive Day 3 documentation covering theoretical background, formulas, empirical lab results, and business metric trade-offs.
