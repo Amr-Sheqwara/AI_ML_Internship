@@ -5,7 +5,7 @@ AI & ML Course with BinX — Week 4 — Day 2: Cross-Validation & Stratification
 
 <blockquote style="border-left: 3px solid #C39BD3; padding-left: 12px; margin-left: 0;">
 
-🎯 <b>Day 2 Focus: $k$-Fold Cross-Validation, Stratification & Stability Diagnostics</b>
+🎯 <b>Day 2 Focus: k-Fold Cross-Validation, Stratification & Stability Diagnostics</b>
 
 Today we transitioned from a single train/validation split to <b>5-Fold Cross-Validation</b>. By using rotating folds and Scikit-Learn <b>Pipelines</b>, we obtained a leak-free, variance-aware estimate of model performance.
 
