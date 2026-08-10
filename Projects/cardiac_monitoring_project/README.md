@@ -1,27 +1,14 @@
-
-  
-
-# Cardiac Patient Monitoring System
-
-  
+# Cardiac Patient Monitoring System 
 
 ## Overview
 
 The **Cardiac Patient Monitoring System** is an individual AI & Machine Learning project developed as part of the BinX Tech AI & ML Internship program. The project focuses on building a curriculum-aligned machine-learning analysis for public cardiac and stroke health data.
-
   
-
 The end-to-end workflow covers data loading, thorough data cleaning and preparation, exploratory data analysis (EDA) with descriptive statistics and visualizations, supervised classification modeling with cross-validation and standard metrics, and automated preprocessing pipelines.
-
-  
 
 ---
 
-  
-
 ## Project Objectives
-
-  
 
 1.  **Environment and Data Inspection:** Set up a reproducible Python/Jupyter environment, inspect dataset columns and data types, and document the target classification variable.
 
@@ -35,15 +22,9 @@ The end-to-end workflow covers data loading, thorough data cleaning and preparat
 
 6.  **Feature Engineering & Pipelines:** Construct reusable Scikit-learn Pipelines combining preprocessing, encoding, scaling, and classification models for consistent execution.
 
-  
-
 ---
 
-  
-
 ## Scope & Boundaries
-
-  
 
 ### In Scope
 
@@ -57,8 +38,6 @@ The end-to-end workflow covers data loading, thorough data cleaning and preparat
 
 - Preprocessing and feature engineering encapsulated in reusable Scikit-learn Pipelines.
 
-  
-
 ### Out of Scope
 
 - Deep learning architectures, neural networks, Large Language Models (LLMs), cloud ML platforms, MLOps orchestration, FastAPI deployment, or production serving infrastructure.
@@ -69,15 +48,9 @@ The end-to-end workflow covers data loading, thorough data cleaning and preparat
 
 - Dependencies on external production systems or external student projects.
 
-  
-
 ---
 
-  
-
 ## Project Structure
-
-  
 
 ```text
 cardiac_monitoring_project/
@@ -103,8 +76,6 @@ cardiac_monitoring_project/
 
 ## Setup and Execution Guide
 
-  
-
 ### Prerequisites
 
 - Python 3.10 or higher
@@ -121,8 +92,6 @@ From the workspace root directory:
 
 ```
 
-  
-
 ### 2. Install Dependencies
 
 Install all required packages from the requirements file:
@@ -132,8 +101,6 @@ Install all required packages from the requirements file:
 pip install -r requirements.txt
 
 ```
-
-  
 
 ### 3. Launch the Jupyter Environment
 

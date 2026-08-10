@@ -5,7 +5,7 @@ AI & ML Course with BinX — Week 4 — Day 2: Cross-Validation & Stratification
 
 <blockquote style="border-left: 3px solid #C39BD3; padding-left: 12px; margin-left: 0;">
 
-🎯 <b>Day 2 Focus: $k$-Fold Cross-Validation, Stratification & Stability Diagnostics</b>
+<b>Day 2 Focus: k-Fold Cross-Validation, Stratification & Stability Diagnostics</b>
 
 Today we transitioned from a single train/validation split to <b>5-Fold Cross-Validation</b>. By using rotating folds and Scikit-Learn <b>Pipelines</b>, we obtained a leak-free, variance-aware estimate of model performance.
 
@@ -15,11 +15,11 @@ Today we transitioned from a single train/validation split to <b>5-Fold Cross-Va
 
 ## <span style="color:#F78BA0">2.1 Overview & Objectives</span>
 
-- 🔄 **$k$-Fold Cross-Validation:** Replace single validation splits with 5 rotating folds.
-- 📊 **Stability Metrics:** Evaluate both the **mean** and **standard deviation** across folds.
-- ⚖️ **Stratified $k$-Fold:** Ensure equal class proportions in each validation fold.
-- 📦 **Leak-Free Pipeline:** Chain `StandardScaler` and `KNeighborsClassifier(n_neighbors=1)` into a unified `Pipeline`.
-- 🔍 **Day 1 Comparison:** Benchmark 5-fold CV stability against Day 1's single validation split.
+-  **$k$-Fold Cross-Validation:** Replace single validation splits with 5 rotating folds.
+-  **Stability Metrics:** Evaluate both the **mean** and **standard deviation** across folds.
+-  **Stratified $k$-Fold:** Ensure equal class proportions in each validation fold.
+-  **Leak-Free Pipeline:** Chain `StandardScaler` and `KNeighborsClassifier(n_neighbors=1)` into a unified `Pipeline`.
+-  **Day 1 Comparison:** Benchmark 5-fold CV stability against Day 1's single validation split.
 
 ---
 
