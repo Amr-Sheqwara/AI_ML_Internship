@@ -15,12 +15,12 @@ This is a structured, 400-hour program that takes participants from Python and m
 <li><strong>Daily Documentation:</strong> Each day includes its own localized <code>README.md</code> detailing the specific learning objectives, tasks completed, and tools configured for that session.</li>
 </ul>
 <h2 id="program-phases">Program Phases</h2>
-<p>The internship curriculum is divided into four progressive phases, moving from fundamentals to independent, real-world AI/ML model delivery</p>
+<p>The internship curriculum is divided into four progressive phases, moving from fundamentals to independent, real-world AI/ML model delivery.</p>
 <ul>
-<li><strong>Phase 1: Foundations (50 hrs)</strong> - Python, math refresher, data manipulation &amp; EDA</li>
-<li><strong>Phase 2: Core ML Training (140 hrs)</strong> - Classical ML algorithms, feature engineering, model evaluation</li>
-<li><strong>Phase 3: Deep Learning &amp; Applied Project (170 hrs)</strong> - Neural networks, DL frameworks, real project sprints, deployment.</li>
-<li><strong>Phase 4: Final Evaluation &amp; Wrap-up (40 hrs)</strong> - Final presentation, portfolio review, certification.</li>
+<li><strong>Phase 1: Foundations (50 hrs)</strong> - Python, math refresher, data manipulation &amp; EDA.</li>
+<li><strong>Phase 2: Core ML Training (140 hrs)</strong> - Classical ML algorithms, feature engineering, model evaluation.</li>
+<li><strong>Phase 3: Deep Learning &amp; Applied Project (170 hrs)</strong> - Neural networks, DL frameworks, real project sprints, and deployment.</li>
+<li><strong>Phase 4: Final Evaluation &amp; Wrap-up (40 hrs)</strong> - Final presentation, portfolio review, and certification.</li>
 </ul>
 <h2 id="tech-stack--tools">Tech Stack &amp; Tools</h2>
 <p>Throughout this program, I am utilizing an industry-standard technical stack aligned with current AI/ML market demand:</p>
