@@ -1,7 +1,7 @@
 # Heart Disease Dataset
 
 ## Overview
-This dataset contains clinical and physiological features collected from cardiac patients to predict the presence of heart disease. In the context of the **Cardiac Patient Monitoring System** project, this dataset is utilized for exploratory data analysis (EDA), statistical evaluation, supervised classification modeling (predicting heart disease status), and unsupervised patient clustering and dimensionality reduction.
+This dataset contains clinical and physiological features collected from cardiac patients to predict the presence of heart disease. In the context of the **Cardiac Patient Monitoring System** project, this dataset is utilized for exploratory data analysis (EDA), statistical evaluation, domain feature engineering, and supervised classification modeling to predict cardiac disease risk.
 
 - **File Name:** `heart.csv`
 - **File Path:** [heart.csv](file:///c:/Users/Amr-Sheqwara/Desktop/AI_ML_Internship/Projects/cardiac_monitoring_project/Data/heart.csv)
@@ -75,6 +75,6 @@ This dataset contains clinical and physiological features collected from cardiac
   - Binary nominals: `Sex` (`M`/`F`) and `ExerciseAngina` (`Y`/`N`) mapped to numeric binary (`0`/`1`).
   - Multi-category nominals: `ChestPainType`, `RestingECG`, and `ST_Slope` processed using `OneHotEncoder(handle_unknown='ignore')`.
 - **Feature Scaling:**
-  - Continuous numerical features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `Oldpeak`) require standardization via `StandardScaler()` when applying Logistic Regression, Support Vector Classifiers, PCA, or K-Means clustering.
+  - Continuous numerical features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `Oldpeak`) require standardization via `StandardScaler()` when applying Logistic Regression, Support Vector Classifiers, and distance-based estimators.
 - **Pipeline Integration:**
   - Package imputation, encoding, and scaling into a unified Scikit-learn `ColumnTransformer` to avoid data leakage during cross-validation.
