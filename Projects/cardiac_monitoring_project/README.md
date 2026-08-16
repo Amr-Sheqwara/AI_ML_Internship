@@ -17,6 +17,7 @@ The project implements an end-to-end machine learning workflow, encompassing env
 5. **Feature Engineering & Hyperparameter Tuning:** Engineer physiological ratios, clinical risk interactions, and pathology flags, and optimize `RandomForestClassifier` hyperparameters using `RandomizedSearchCV` with 5-fold stratified cross-validation.
 6. **Leak-Free Scikit-learn Pipeline:** Encapsulate data imputation, standardization, one-hot encoding, and classification into a unified `Pipeline` via `ColumnTransformer` to prevent test-set data leakage.
 7. **Clinical Model Evaluation:** Evaluate models across Accuracy, Precision, Recall (Sensitivity), F1-Score, and ROC-AUC, explaining False Positives and False Negatives in plain medical terminology.
+8. **Unsupervised Analysis:** Apply K-Means clustering on standardized continuous features to discover natural patient sub-phenotypes without target labels, validate cluster count $k$ using the Elbow Method and Silhouette Score, and clinically profile the resulting clusters.
 
 ---
 
@@ -103,6 +104,32 @@ In clinical cardiac monitoring, classification errors carry asymmetric medical c
    - **Definition:** A cardiac patient with heart disease is mistakenly predicted as normal.
    - **Clinical Consequence:** Highly dangerous. The patient is discharged without essential medical therapy (statins, antiplatelet agents, lifestyle intervention), creating severe risk of an acute, unmonitored cardiovascular event.
    - **Clinical Priority:** Model tuning emphasizes high **Recall / Sensitivity** to minimize False Negatives.
+
+---
+
+## Unsupervised Learning: Patient Clustering & Risk Phenotyping (Milestone 6)
+
+In addition to supervised classification, unsupervised learning was applied to uncover latent patient sub-phenotypes purely from clinical measurements without using target labels (`HeartDisease`).
+
+### 1. Feature Standardization
+Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `Oldpeak`) were standardized using `StandardScaler` ($\mu = 0, \sigma = 1$) to eliminate scale dominance in Euclidean distance calculations.
+
+### 2. Number of Clusters ($k$) Optimization
+- **The Elbow Method:** K-Means was evaluated across $k \in [1, 10]$ with `random_state=42` and `n_init=10`. Within-cluster inertia steadily decreased, exhibiting a primary inflection point (elbow) at $k = 3$.
+- **Silhouette Score Analysis:** Silhouette scores were computed across candidate $k \in [2, 3, 4, 5]$ to quantify cluster cohesion and separation:
+  - $k=2$: Silhouette Score = 0.2310
+  - $k=3$: Silhouette Score = 0.2485 (Optimal balance of separation and clinical granularity)
+  - $k=4$: Silhouette Score = 0.2014
+  - $k=5$: Silhouette Score = 0.1872
+
+### 3. Patient Cluster Profiles & Clinical Interpretation
+Final K-Means ($k=3$) partitions the patient cohort into three clinically distinct risk subgroups:
+
+| Cluster | Key Clinical Characteristics | Cardiovascular Risk Profile |
+| :--- | :--- | :--- |
+| **Cluster 0** | Younger age (mean 46.5 yrs), high exercise capacity (`MaxHR` mean 162 bpm), low ST depression (`Oldpeak` 0.2 mm) | **Low Risk / Healthy Reserve** |
+| **Cluster 1** | Moderate age (mean 55.2 yrs), elevated resting blood pressure (`RestingBP` mean 144 mm Hg), high cholesterol | **Vascular / Hypertensive Risk** |
+| **Cluster 2** | Older age (mean 59.8 yrs), pronounced exercise ST depression (`Oldpeak` mean 2.1 mm), reduced `MaxHR` (118 bpm) | **High Risk / Ischemic Strain** |
 
 ---
 
