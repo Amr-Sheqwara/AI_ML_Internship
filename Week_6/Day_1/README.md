@@ -22,9 +22,9 @@ In Sprint 1, establishing a baseline first is essential. Classical ML algorithms
 
 - Confirm the Sprint 1 goal and prioritize backlog tasks (dataset finalization, EDA, and baseline modeling).
 
-- Understand neural network architecture: single neurons as weighted sums ($z = \mathbf{w} \cdot \mathbf{x} + b$), biases, non-linear activations ($\text{output} = \sigma(z)$), and layer structures (input, hidden, output).
+- Understand neural network architecture: single neurons as weighted sums (z=w⋅x+b), biases, non-linear activations (output=σ(z)), and layer structures (input, hidden, output).
 
-- Address physiological data anomalies ($0\text{ mm Hg}$ blood pressure and unrecorded $0\text{ mg/dl}$ cholesterol) via median imputation.
+- Address physiological data anomalies (0mm Hg blood pressure and unrecorded 0mg/dl cholesterol) via median imputation.
 
 - Construct a leak-free Scikit-Learn <code>ColumnTransformer</code> and <code>Pipeline</code>.
 
@@ -72,7 +72,7 @@ $$\hat{y} = \sigma(z) = \sigma(\mathbf{w} \cdot  \mathbf{x} + b)$$
 
 -  **Hidden Layers:** Successively transform inputs into higher-level abstract representations. "Deep" learning denotes stacking multiple hidden layers.
 
--  **Output Layer:** Generates final task predictions (a single sigmoid unit for binary classification producing $\hat{y} \in (0, 1)$).
+-  **Output Layer:** Generates final task predictions (a single sigmoid unit for binary classification producing ŷ ∈ (0,1)).
 
 ---
 
