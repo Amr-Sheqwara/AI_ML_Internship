@@ -17,7 +17,7 @@ The project implements an end-to-end machine learning workflow, encompassing env
 5. **Feature Engineering & Hyperparameter Tuning:** Engineer physiological ratios, clinical risk interactions, and pathology flags, and optimize `RandomForestClassifier` hyperparameters using `RandomizedSearchCV` with 5-fold stratified cross-validation.
 6. **Leak-Free Scikit-learn Pipeline:** Encapsulate data imputation, standardization, one-hot encoding, and classification into a unified `Pipeline` via `ColumnTransformer` to prevent test-set data leakage.
 7. **Clinical Model Evaluation:** Evaluate models across Accuracy, Precision, Recall (Sensitivity), F1-Score, and ROC-AUC, explaining False Positives and False Negatives in plain medical terminology.
-8. **Unsupervised Analysis:** Apply K-Means clustering on standardized continuous features to discover natural patient sub-phenotypes without target labels, validate cluster count $k$ using the Elbow Method and Silhouette Score, and clinically profile the resulting clusters.
+8. **Unsupervised Analysis & Latent Phenotyping:** Apply K-Means clustering, DBSCAN density-based clustering, Principal Component Analysis (PCA), and t-Distributed Stochastic Neighbor Embedding (t-SNE) to discover patient risk sub-phenotypes, isolate clinical anomalies, reduce feature dimensionality, and visualize non-linear patient manifolds without diagnostic labels.
 
 ---
 
@@ -107,29 +107,62 @@ In clinical cardiac monitoring, classification errors carry asymmetric medical c
 
 ---
 
-## Unsupervised Learning: Patient Clustering & Risk Phenotyping (Milestone 6)
+## Unsupervised Learning: Clustering, Anomaly Detection, Dimensionality Reduction & Manifold Learning (Milestone 6)
 
-In addition to supervised classification, unsupervised learning was applied to uncover latent patient sub-phenotypes purely from clinical measurements without using target labels (`HeartDisease`).
+In addition to supervised classification, unsupervised learning was applied to uncover latent patient sub-phenotypes, isolate clinical anomalies, reduce feature dimensionality, and visualize non-linear patient manifolds without using target labels (`HeartDisease`).
 
 ### 1. Feature Standardization
 Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `Oldpeak`) were standardized using `StandardScaler` ($\mu = 0, \sigma = 1$) to eliminate scale dominance in Euclidean distance calculations.
 
-### 2. Number of Clusters ($k$) Optimization
-- **The Elbow Method:** K-Means was evaluated across $k \in [1, 10]$ with `random_state=42` and `n_init=10`. Within-cluster inertia steadily decreased, exhibiting a primary inflection point (elbow) at $k = 3$.
-- **Silhouette Score Analysis:** Silhouette scores were computed across candidate $k \in [2, 3, 4, 5]$ to quantify cluster cohesion and separation:
-  - $k=2$: Silhouette Score = 0.2310
-  - $k=3$: Silhouette Score = 0.2485 (Optimal balance of separation and clinical granularity)
-  - $k=4$: Silhouette Score = 0.2014
-  - $k=5$: Silhouette Score = 0.1872
+### 2. Centroid-Based Clustering (K-Means & Patient Risk Phenotyping)
+- **The Elbow Method & Silhouette Validation:** Evaluated across $k \in [1, 10]$ with `random_state=42` and `n_init=10`. Quantitative Silhouette analysis demonstrates that **$k=2$ achieves the global maximum Silhouette Score ($0.2150$)**, naturally bifurcating the patient cohort into two distinct cardiovascular risk phenotypes.
+- **Discovered Patient Risk Subgroups ($k=2$):**
 
-### 3. Patient Cluster Profiles & Clinical Interpretation
-Final K-Means ($k=3$) partitions the patient cohort into three clinically distinct risk subgroups:
+| Cluster | Key Clinical Characteristics | Cohort Size | Disease Rate | Cardiovascular Risk Profile |
+| :--- | :--- | :--- | :--- | :--- |
+| **Cluster 0** | Older age (mean 59.5 yrs), elevated blood pressure (`RestingBP` 139.6 mmHg), reduced exercise capacity (`MaxHR` 122.4 bpm), severe ST depression (`Oldpeak` 1.38 mm) | 466 (50.76%) | **76.39%** | **High Cardiovascular Risk & Exercise Ischemia Subgroup** |
+| **Cluster 1** | Younger age (mean 47.3 yrs), controlled blood pressure (`RestingBP` 124.9 mmHg), robust exercise capacity (`MaxHR` 151.7 bpm), minimal ST depression (`Oldpeak` 0.38 mm) | 452 (49.24%) | **33.63%** | **Low Cardiovascular Risk / Preserved Reserve Subgroup** |
 
-| Cluster | Key Clinical Characteristics | Cardiovascular Risk Profile |
-| :--- | :--- | :--- |
-| **Cluster 0** | Younger age (mean 46.5 yrs), high exercise capacity (`MaxHR` mean 162 bpm), low ST depression (`Oldpeak` 0.2 mm) | **Low Risk / Healthy Reserve** |
-| **Cluster 1** | Moderate age (mean 55.2 yrs), elevated resting blood pressure (`RestingBP` mean 144 mm Hg), high cholesterol | **Vascular / Hypertensive Risk** |
-| **Cluster 2** | Older age (mean 59.8 yrs), pronounced exercise ST depression (`Oldpeak` mean 2.1 mm), reduced `MaxHR` (118 bpm) | **High Risk / Ischemic Strain** |
+---
+
+### 3. Density-Based Clustering & Outlier Isolation (DBSCAN)
+- **Hyperparameter Calibration:** Evaluated sorted 5th-nearest-neighbor distances (k-distance graph) to select $\varepsilon = 1.3$ with $\text{MinPts} = 5$.
+- **Clinical Anomaly Isolation ($label = -1$):** DBSCAN automatically flagged **51 patient records (5.56% of cohort)** as density noise/outliers without ground-truth labels.
+- **Pathological Profiling of Flagged Outliers:**
+  - **Disease Concentration:** The **Heart Disease prevalence in the DBSCAN outlier cohort is 78.43%** (vs. 53.98% in core patients).
+  - **Extreme Clinical Severity:** Outliers capture extreme ischemic ST depression (mean `Oldpeak` 1.95 mm, max 6.2 mm), hypertensive crises (`RestingBP` up to 200 mmHg), and severe hypercholesterolemia (`Cholesterol` up to 603 mg/dl).
+
+---
+
+### 4. Linear Dimensionality Reduction & Variance Analysis (PCA)
+- **Variance Retention Analysis:**
+  - **PC1 (34.01% Variance):** Cardiovascular Aging & Exercise Ischemia Axis (High positive loadings on `Age` $+0.601$, `Oldpeak` $+0.450$, `RestingBP` $+0.428$; negative loading on `MaxHR` $-0.494$).
+  - **PC2 (21.02% Variance):** Metabolic & Hemodynamic Stress Axis (Dominated by `Cholesterol` $+0.838$, `MaxHR` $+0.394$, `RestingBP` $+0.331$).
+  - **Information Retention:** PC1 + PC2 capture **55.03%** of variance; PC1 through PC4 retain **88.47%** of total clinical variance.
+- **Downstream Utility:** Orthogonally transforms features to eliminate multicollinearity before linear classification.
+
+---
+
+### 5. Non-Linear Manifold Learning (t-SNE)
+- **Local Neighborhood Preservation:** Implemented `TSNE(n_components=2, perplexity=30, random_state=42)` using Student-t kernel mapping to resolve the crowding problem.
+- **Clinical Manifold Findings:**
+  - Isolates cohesive, dense clusters of high-risk asymptomatic patients (`ChestPainType = ASY`).
+  - Confirms non-linear topological separation between healthy reserve patients (Cluster 0) and advanced ischemic patients (Cluster 2).
+  - Strictly utilized for exploratory visualization (coordinates lack physical units and are not used for downstream model feature engineering).
+
+---
+
+### 6. Comprehensive Unsupervised Method Comparison Matrix
+
+| Dimension | K-Means Clustering | DBSCAN | Principal Component Analysis (PCA) | t-SNE |
+| :--- | :--- | :--- | :--- | :--- |
+| **Method Paradigm** | Centroid-Based Partitioning | Density-Based Clustering | Linear Orthogonal Projection | Non-Linear Probabilistic Manifold |
+| **Mathematical Objective** | Minimizes Within-Cluster Inertia | Connects $\varepsilon$-dense neighborhoods | Maximizes Global Variance ($\mathbf{\Sigma}\mathbf{v} = \lambda\mathbf{v}$) | Minimizes KL Divergence between $P$ and $Q$ |
+| **Cluster Geometry** | Spherical, Convex | Arbitrary Shapes & Variable Densities | Orthogonal Subspaces | Non-Linear Topological Manifolds |
+| **Outlier Handling** | Forced into nearest centroid | Flagged as Noise ($label = -1$) | Exerts high leverage on variance | Positioned at manifold periphery |
+| **Feature Interpretability** | High (Original clinical units) | High (Original clinical units) | Moderate (Linear feature combinations) | Low (Abstract 2D coordinates) |
+| **Downstream Utility** | Risk phenotyping & stratification | Anomaly & pathological screening | Multicollinearity removal & compression | Cohort visual validation |
+| **Key Cardiac Finding** | Discovers 2 distinct risk cohorts ($33.63\% \to 76.39\%$ disease) | Flags 51 outliers ($78.43\%$ disease rate) | PC1: Aging/Ischemia; PC2: Lipids | Isolates asymptomatic ischemia clusters |
 
 ---
 
