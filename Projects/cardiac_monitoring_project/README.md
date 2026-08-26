@@ -134,7 +134,13 @@ Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `
 
 ---
 
-### 4. Linear Dimensionality Reduction & Variance Analysis (PCA)
+### 4. Agglomerative Hierarchical Clustering & Dendrogram Analysis
+- **Linkage Matrix & Dendrogram Tree:** Computed using Ward's minimum variance criterion on standardized physiological features. Visualized truncated multi-scale merges with a cutoff distance at $d = 33.0$ ($k=2$).
+- **Benchmarking vs. K-Means:** Achieves a Silhouette Score of **$0.1465$** (vs. $0.2150$ for K-Means). While hierarchical clustering provides an intuitive multi-level visual taxonomy, K-Means is retained for clinical deployment due to its explicit centroids for real-time patient assignment.
+
+---
+
+### 5. Linear Dimensionality Reduction & Variance Analysis (PCA)
 - **Variance Retention Analysis:**
   - **PC1 (34.01% Variance):** Cardiovascular Aging & Exercise Ischemia Axis (High positive loadings on `Age` $+0.601$, `Oldpeak` $+0.450$, `RestingBP` $+0.428$; negative loading on `MaxHR` $-0.494$).
   - **PC2 (21.02% Variance):** Metabolic & Hemodynamic Stress Axis (Dominated by `Cholesterol` $+0.838$, `MaxHR` $+0.394$, `RestingBP` $+0.331$).
@@ -143,7 +149,7 @@ Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `
 
 ---
 
-### 5. Non-Linear Manifold Learning (t-SNE)
+### 6. Non-Linear Manifold Learning (t-SNE)
 - **Local Neighborhood Preservation:** Implemented `TSNE(n_components=2, perplexity=30, random_state=42)` using Student-t kernel mapping to resolve the crowding problem.
 - **Clinical Manifold Findings:**
   - Isolates cohesive, dense clusters of high-risk asymptomatic patients (`ChestPainType = ASY`).
@@ -152,17 +158,17 @@ Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `
 
 ---
 
-### 6. Comprehensive Unsupervised Method Comparison Matrix
+### 7. Comprehensive Unsupervised Method Comparison Matrix
 
-| Dimension | K-Means Clustering | DBSCAN | Principal Component Analysis (PCA) | t-SNE |
-| :--- | :--- | :--- | :--- | :--- |
-| **Method Paradigm** | Centroid-Based Partitioning | Density-Based Clustering | Linear Orthogonal Projection | Non-Linear Probabilistic Manifold |
-| **Mathematical Objective** | Minimizes Within-Cluster Inertia | Connects $\varepsilon$-dense neighborhoods | Maximizes Global Variance ($\mathbf{\Sigma}\mathbf{v} = \lambda\mathbf{v}$) | Minimizes KL Divergence between $P$ and $Q$ |
-| **Cluster Geometry** | Spherical, Convex | Arbitrary Shapes & Variable Densities | Orthogonal Subspaces | Non-Linear Topological Manifolds |
-| **Outlier Handling** | Forced into nearest centroid | Flagged as Noise ($label = -1$) | Exerts high leverage on variance | Positioned at manifold periphery |
-| **Feature Interpretability** | High (Original clinical units) | High (Original clinical units) | Moderate (Linear feature combinations) | Low (Abstract 2D coordinates) |
-| **Downstream Utility** | Risk phenotyping & stratification | Anomaly & pathological screening | Multicollinearity removal & compression | Cohort visual validation |
-| **Key Cardiac Finding** | Discovers 2 distinct risk cohorts ($33.63\% \to 76.39\%$ disease) | Flags 51 outliers ($78.43\%$ disease rate) | PC1: Aging/Ischemia; PC2: Lipids | Isolates asymptomatic ischemia clusters |
+| Dimension | K-Means Clustering | DBSCAN | Agglomerative Hierarchical | Principal Component Analysis (PCA) | t-SNE |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Method Paradigm** | Centroid-Based Partitioning | Density-Based Clustering | Bottom-Up Agglomerative Tree | Linear Orthogonal Projection | Non-Linear Probabilistic Manifold |
+| **Mathematical Objective** | Minimizes Within-Cluster Inertia | Connects $\varepsilon$-dense neighborhoods | Minimizes Ward Variance ($\Delta \text{ESS}$) | Maximizes Global Variance ($\mathbf{\Sigma}\mathbf{v} = \lambda\mathbf{v}$) | Minimizes KL Divergence between $P$ and $Q$ |
+| **Cluster Geometry** | Spherical, Convex | Arbitrary Shapes & Variable Densities | Hierarchical Nested Partitions | Orthogonal Subspaces | Non-Linear Topological Manifolds |
+| **Outlier Handling** | Forced into nearest centroid | Flagged as Noise ($label = -1$) | Merged into small branches | Exerts high leverage on variance | Positioned at manifold periphery |
+| **Feature Interpretability** | High (Original clinical units) | High (Original clinical units) | Moderate (Tree branch heights) | Moderate (Linear feature combinations) | Low (Abstract 2D coordinates) |
+| **Downstream Utility** | Risk phenotyping & stratification | Anomaly & pathological screening | Multi-scale exploratory review | Multicollinearity removal & compression | Cohort visual validation |
+| **Key Cardiac Finding** | Discovers 2 distinct risk cohorts ($33.63\% \to 76.39\%$ disease) | Flags 51 outliers ($78.43\%$ disease rate) | Multi-level tree ($k=2$, sil $0.1465$) | PC1: Aging/Ischemia; PC2: Lipids | Isolates asymptomatic ischemia clusters |
 
 ---
 
