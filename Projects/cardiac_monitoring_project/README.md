@@ -23,7 +23,7 @@ The project implements an end-to-end machine learning workflow, encompassing env
 
 ## Dataset Description
 
-- **Dataset File:** [`Data/heart.csv`](file:///c:/Users/Amr-Sheqwara/Desktop/AI_ML_Internship/Projects/cardiac_monitoring_project/Data/heart.csv)
+- **Dataset File:** [`Data/raw/heart.csv`](file:///c:/Users/Amr-Sheqwara/Desktop/AI_ML_Internship/Projects/cardiac_monitoring_project/Data/raw/heart.csv)
 - **Total Records:** 918 patient observations
 - **Total Features:** 11 clinical and physiological attributes + 1 binary target variable
 - **Target Variable (`HeartDisease`):**
@@ -177,8 +177,10 @@ Continuous physiological features (`Age`, `RestingBP`, `Cholesterol`, `MaxHR`, `
 ```text
 cardiac_monitoring_project/
 ├── Data/
-│   ├── README.md                              # Dataset documentation and data dictionary
-│   └── heart.csv                              # Clinical dataset (918 records)
+│   ├── raw/                                   # Read-only original clinical dataset
+│   │   └── heart.csv                          # Clinical dataset (918 records)
+│   ├── processed/                             # Processed feature arrays & caches (git-ignored)
+│   └── README.md                              # Dataset documentation and data dictionary
 ├── Notebooks/
 │   └── Cardiac_Patient_Monitoring_System.ipynb # End-to-end analysis and modeling notebook
 ├── Outputs/                                   # High-resolution EDA visualization charts

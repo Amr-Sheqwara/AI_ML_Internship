@@ -35,7 +35,7 @@ In supervised learning (Weeks 3-4), every training example had a known correct a
 
 We utilize the **Heart Disease Clinical Dataset** from the Cardiac Monitoring Project for patient segmentation and pattern discovery.
 
-- **Source File:** `../../Projects/cardiac_monitoring_project/Data/heart.csv`
+- **Source File:** `../../Projects/cardiac_monitoring_project/Data/raw/heart.csv`
 - **Target Handling:** The target label (`target`) is dropped during clustering to evaluate pure unsupervised partitioning.
 - **Key Numeric Features ($X$):**
   - `age`: Patient age in years
@@ -79,7 +79,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 
 # 1) Load and scale continuous clinical features
-df = pd.read_csv('../../Projects/cardiac_monitoring_project/Data/heart.csv')
+df = pd.read_csv('../../Projects/cardiac_monitoring_project/Data/raw/heart.csv')
 features = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
 X_scaled = StandardScaler().fit_transform(df[features])
 

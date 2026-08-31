@@ -35,7 +35,7 @@ K-Means has real limitations: it requires choosing $k$ in advance, assumes clust
 
 We utilize the **Palmer Archipelago Penguins Morphological Dataset** (`penguins_size.csv`) for unsupervised biometric clustering and species segmentation.
 
-- **Source File:** `../../Data/penguins_size.csv`
+- **Source File:** `../../Data/raw/penguins_size.csv`
 - **Target & Identifier Handling:** Categorical columns (`species`, `island`, `sex`) are excluded from clustering to evaluate pure unsupervised grouping.
 - **Continuous Morphological Features ($X$):**
   - `culmen_length_mm`: Culmen length in millimeters

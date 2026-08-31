@@ -33,7 +33,7 @@ Today we trained and evaluated four distinct classification models (<b>Decision 
 
 We utilize the **Telco Customer Churn Dataset**:
 
-- <b>Source File:</b> `../../Data/Customer-Churn.csv`
+- <b>Source File:</b> `../../Data/raw/Customer-Churn.csv`
 - <b>Dataset Dimensions:</b> 7,043 rows, 21 initial attributes
 - <b>Target Variable ($y$):</b> `Churn_Binary` (`1` = Churned [26.54%], `0` = Retained [73.46%])
 - <b>Features ($X$):</b> 30 features generated via one-hot encoding (`pd.get_dummies(..., drop_first=True)`), with `TotalCharges` missing values imputed using median imputation.

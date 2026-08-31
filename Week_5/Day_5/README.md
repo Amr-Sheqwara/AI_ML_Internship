@@ -72,7 +72,7 @@ Phase 3 is the applied core of the BinX Tech AI & ML Internship Program: buildin
 
 -  **Domain:** Healthcare & Cardiovascular Diagnostics
 
--  **Primary Data Source:**  `../../Projects/cardiac_monitoring_project/Data/heart.csv`
+-  **Primary Data Source:**  `../../Projects/cardiac_monitoring_project/Data/raw/heart.csv`
 
 -  **Cohort Size:** 918 patient observations
 

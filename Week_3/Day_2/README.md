@@ -34,7 +34,7 @@ Today we trained our first predictive regression model using <b>Scikit-Learn</b>
 
 We utilize the **House Price Dataset** containing property characteristics and historical sales values.
 
--  <b>Source File:</b> `../../Data/HousePriceDataset.csv`
+-  <b>Source File:</b> `../../Data/raw/HousePriceDataset.csv`
 
 -  <b>Target Variable ($y$):</b> `price` (Continuous target value)
 

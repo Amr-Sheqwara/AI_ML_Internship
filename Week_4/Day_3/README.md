@@ -32,7 +32,7 @@ Today we explore the foundational machine learning trade-off: the <b>Bias-Varian
 
 ## <span  style="color:#85C1E9">3.2 Dataset Summary</span>
 
-- <b>Source File:</b> `../../Data/Customer-Churn.csv`
+- <b>Source File:</b> `../../Data/raw/Customer-Churn.csv`
 
 - <b>Target Variable ($y$):</b> `Churn` (`Yes` / `No`)
 

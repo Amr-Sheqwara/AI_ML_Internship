@@ -36,7 +36,7 @@ Real-world datasets often have dozens or hundreds of features. High dimensionali
 
 We utilize the **Breast Cancer Wisconsin Diagnostic Dataset** (`Breast_Cancer_Wisconsin.csv`) for high-dimensional feature compression and orthogonal subspace projection.
 
-- **Source File:** `../../Data/Breast_Cancer_Wisconsin.csv`
+- **Source File:** `../../Data/raw/Breast_Cancer_Wisconsin.csv`
 - **Target Variable ($y$):** `diagnosis` (`M` = Malignant: 212, `B` = Benign: 357)
 - **Feature Matrix ($X$):** 30 continuous morphological measurements of cell nuclei (`radius`, `texture`, `perimeter`, `area`, `smoothness`, `compactness`, `concavity`, `concave points`, `symmetry`, and `fractal dimension` across `mean`, `se`, and `worst`).
 - **Instances:** 569 complete clinical records (zero missing values after dropping `id` and `Unnamed: 32`).

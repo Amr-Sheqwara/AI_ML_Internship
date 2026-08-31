@@ -37,7 +37,7 @@ Today we trained a binary classification model using <b>Scikit-Learn</b> (`Logis
 
 We utilize the **Telco Customer Churn Dataset**:
 
--  <b>Source File:</b> `../../Data/Customer-Churn.csv`
+-  <b>Source File:</b> `../../Data/raw/Customer-Churn.csv`
 
 -  <b>Dataset Dimensions:</b> 7,043 rows, 21 columns
 

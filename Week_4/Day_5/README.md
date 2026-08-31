@@ -38,7 +38,7 @@ Today marks the culmination of Week 4 with the Tuned Pipeline Mini-Project. We a
 
 We utilize the **Telco Customer Churn Dataset**:
 
--  <b>Source File:</b> `../../Data/Customer-Churn.csv`
+-  <b>Source File:</b> `../../Data/raw/Customer-Churn.csv`
 
 -  <b>Instances:</b> 7,032 clean rows (after coercing whitespace in `TotalCharges` to numeric, dropping null values, and dropping `customerID`).
 

@@ -25,7 +25,7 @@ Today we transitioned from a single train/validation split to <b>5-Fold Cross-Va
 
 ## <span style="color:#85C1E9">2.2 Dataset Summary</span>
 
-- **Source File:** `../../Data/penguins_cleaned.csv`
+- **Source File:** `../../Data/processed/penguins_cleaned.csv`
 - **Total Instances:** 333 clean rows
 - **Split:** 80% CV Training Pool ($N = 266$) / 20% Held-out Test Set ($N = 67$)
 

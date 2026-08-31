@@ -41,7 +41,7 @@ In Sprint 1, establishing a baseline first is essential. Classical ML algorithms
 
 We utilize the **Cardiac Patient Monitoring Dataset** for diagnostic classification:
 
--  **Source File:**  `../../Projects/cardiac_monitoring_project/Data/heart.csv`
+-  **Source File:**  `../../Projects/cardiac_monitoring_project/Data/raw/heart.csv`
 
 -  **Cohort Size:** 918 patient observations
 

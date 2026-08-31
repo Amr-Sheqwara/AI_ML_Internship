@@ -1,2 +1,17 @@
-Resources/
+# Virtual environments
 .venv/
+env/
+__pycache__/
+# Large datasets & archive zip files (>50 MB)
+Data/Image_dataset
+Data/processed
+Data/raw
+# Keep data dictionaries and metadata tracked
+!Data/README.md
+!Data/data_dict.md
+# Large model binaries
+*.h5
+*.pkl
+*.joblib
+# Resources
+Resources/

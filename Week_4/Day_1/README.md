@@ -37,7 +37,7 @@ In machine learning, repeatedly checking test data during tuning leaks informati
 
 We utilize the **Palmer Archipelago Penguins** dataset for multi-class species classification.
 
-- **Source File:** `../../Data/penguins_size.csv`
+- **Source File:** `../../Data/raw/penguins_size.csv`
 - **Target Variable ($y$):** `species` (`Adelie`, `Chinstrap`, `Gentoo`)
 - **Features ($X$):** `island`, `culmen_length_mm`, `culmen_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`
 - **Instances:** 333 clean rows (after removing missing values and invalid entries).

@@ -40,7 +40,7 @@ In supervised machine learning, models learn generalizable patterns from trainin
 
 We utilize the **Palmer Penguins** dataset, an industry-standard alternative to Iris for classification and regression benchmarking.
 
--  <b>Source File:</b> `../../Data/penguins_size.csv`
+-  <b>Source File:</b> `../../Data/raw/penguins_size.csv`
 
 -  <b>Features ($X$):</b> `island`, `culmen_length_mm`, `culmen_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`
 

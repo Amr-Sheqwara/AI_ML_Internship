@@ -4,7 +4,7 @@
 This dataset contains clinical and physiological features collected from cardiac patients to predict the presence of heart disease. In the context of the **Cardiac Patient Monitoring System** project, this dataset is utilized for exploratory data analysis (EDA), statistical evaluation, domain feature engineering, and supervised classification modeling to predict cardiac disease risk.
 
 - **File Name:** `heart.csv`
-- **File Path:** [heart.csv](file:///c:/Users/Amr-Sheqwara/Desktop/AI_ML_Internship/Projects/cardiac_monitoring_project/Data/heart.csv)
+- **File Path:** [heart.csv](file:///c:/Users/Amr-Sheqwara/Desktop/AI_ML_Internship/Projects/cardiac_monitoring_project/Data/raw/heart.csv)
 - **Total Records (Rows):** 918
 - **Total Features (Columns):** 12 (11 clinical features + 1 target variable)
 - **File Format:** Comma-Separated Values (CSV)

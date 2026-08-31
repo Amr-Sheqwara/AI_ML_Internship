@@ -31,7 +31,7 @@ Today we built a complete, leak-free supervised-learning pipeline on the <b>Palm
 
 ## <span style="color:#309c42ff">5.2 Dataset Summary</span>
 
-- <b>Source Dataset:</b> Palmer Penguins (`../../Data/penguins_size.csv`)
+- <b>Source Dataset:</b> Palmer Penguins (`../../Data/raw/penguins_size.csv`)
 - <b>Raw Size:</b> 344 rows, 7 columns
 - <b>Cleaned Size:</b> 333 rows (11 rows dropped containing missing physical measurements or invalid `sex` entries)
 - <b>Target Variable ($y$):</b> `species` — 3 Classes:

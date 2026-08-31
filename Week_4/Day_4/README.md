@@ -33,7 +33,7 @@ Today we explore how domain understanding turns into predictive power through <b
 
 We utilize the **Telco Customer Churn Dataset**:
 
-- <b>Source File:</b> `../../Data/Customer-Churn.csv`
+- <b>Source File:</b> `../../Data/raw/Customer-Churn.csv`
 - <b>Instances:</b> 7,032 clean rows (after removing missing values in `TotalCharges` and dropping `customerID`).
 - <b>Target Variable ($y$):</b> `Churn` (`1` = Churned [26.54%], `0` = Retained [73.46%]).
 - <b>Partitioning:</b> Stratified 80/20 train/test split (5,625 training rows / 1,407 test rows, `random_state=42`).
