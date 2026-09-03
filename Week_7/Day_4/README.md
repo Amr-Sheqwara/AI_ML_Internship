@@ -67,3 +67,40 @@ Transformers discard recurrent sequential steps entirely, relying on attention a
 Similar to leveraging pre-trained CNNs for computer vision (Day 2), pre-trained Transformers (e.g., BERT, DistilBERT, GPT-2, RoBERTa) allow practitioners to reuse rich language representations pre-trained on massive corpora.
 
 * **High-Level Abstraction (`pipeline`):** The Hugging Face `pipeline` coordinates text preprocessing (tokenization), tensor mapping, neural model forward pass, and output decoding into a unified interface.
+
+---
+
+---
+
+## <span style="color:#AF7AC5">4.5 Symmetrical Benchmark Lab: Gated LSTM vs. Pre-trained Transformer</span>
+
+Both architectures were benchmarked on the IMDb movie review test dataset to contrast recurrent sequential memory against multi-head self-attention.
+
+### Comparative Performance Results:
+
+| Architecture | Order-Aware | Gated Memory Cells | Trainable Parameters | Test Loss | Test Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | ROC-AUC (%) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Long Short-Term Memory (LSTM)** | Yes | Yes | 2,611,521 | **0.3262** | 86.10 | 86.02 | **86.22** | 86.12 | 93.53 |
+| **Pre-trained Transformer (DistilBERT)** | Yes | No | 66,955,010 | 0.4345 | **88.30** | **89.57** | 86.09 | **87.80** | **95.61** |
+
+### Architectural Analysis:
+
+1. **Path Length & Context Propagation:**
+   - **LSTM:** Employs an $O(n)$ interaction path where token 1 interacts with token $n$ through $n-1$ intermediate recurrent transformations. Although the gated additive cell state ($C_t$) mitigates gradient decay relative to SimpleRNN, representations remain compressed into a fixed-dimensional state.
+   - **Transformer:** Utilizes scaled dot-product attention to compute dynamic, pairwise affinity weights between all tokens simultaneously with an $O(1)$ maximum path length, preventing long-range context attenuation.
+
+2. **Representation Generalization:**
+   - The pre-trained Transformer achieved higher accuracy (**88.30% vs. 86.10%**) and higher ROC-AUC (**95.61% vs. 93.53%**) zero-shot on IMDb, demonstrating the superior transfer capability of self-supervised language representations over training task-specific recurrent models from scratch.
+
+3. **Loss Calibration:**
+   - The LSTM achieved lower test loss (**0.3262 vs. 0.4345**) due to in-domain parameter optimization directly on IMDb training reviews, whereas DistilBERT's probability calibration reflected its SST-2 fine-tuning distribution.
+
+### 4. Core Architecture Selection: Pre-trained Transformer (DistilBERT)
+
+* **Selected Core Architecture:** **Pre-trained Transformer (DistilBERT)**.
+* **Selection Justification:**
+  - **Empirical Superiority:** Achieves higher accuracy (**88.30% vs. 86.10%**) and superior ROC-AUC (**95.61% vs. 93.53%**) over the trained-from-scratch LSTM without requiring any in-domain training epochs.
+  - **Elimination of Recurrent Bottleneck:** Scaled dot-product attention computes direct pairwise connections between all tokens in $O(1)$ computation steps, preventing the long-range context degradation inherent to recurrent hidden state propagation ($h_t$).
+  - **Transfer Learning Advantage:** Leveraging language priors pre-trained on BookCorpus and English Wikipedia yields robust syntactic comprehension of complex negations, clause shifts, and sentiment nuances.
+  - **Computational Throughput:** Operates via parallel matrix multiplications ($QK^T$) across the sequence dimension, fully utilizing hardware acceleration compared to strictly serialized recurrent loops.
+
