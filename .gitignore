@@ -3,7 +3,7 @@
 env/
 __pycache__/
 # Large datasets & archive zip files (>50 MB)
-Data/Image_dataset
+Data/CNN Dataset
 Data/processed
 Data/raw
 # Keep data dictionaries and metadata tracked
